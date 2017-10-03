@@ -14,7 +14,8 @@ public class Collector : MonoBehaviour {
 	}
 
 	void OnTriggerEnter(Collider other) {
-		if (other.tag == "Collectable") {
+        Collectable collectableFromOther = other.GetComponent<Collectable>();
+        if(collectableFromOther != null) { 
 			other.GetComponent<Collectable> ().Collect ();
 			inventory.Add (other.GetComponent<Collectable> ().description);
 		}
