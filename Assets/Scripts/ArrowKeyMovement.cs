@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class ArrowKeyMovement : MonoBehaviour {
 	public float speed;
+
+    private float initialZ;
 	// Use this for initialization
 	void Start () {
-		
+        initialZ = transform.position.z;
 	}
 	
 	// FixedUpdate is called at a fixed interval
@@ -24,6 +26,8 @@ public class ArrowKeyMovement : MonoBehaviour {
 		if (Input.GetKey (KeyCode.RightArrow)) {
 			transform.Translate(Vector3.right * speed);
 		}
-
+        if(transform.position.z < initialZ) {
+            transform.position = new Vector3(transform.position.x, transform.position.y, initialZ);
+        }
 	}
 }
